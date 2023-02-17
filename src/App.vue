@@ -1,9 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app>
+    <v-app-bar color="primary">
+      <v-app-bar-title>
+        Vuetify Sample Page
+      </v-app-bar-title>
+    </v-app-bar>
+    
+    <v-main>
+      <v-btn text><router-link to="/">Home</router-link></v-btn>
+      <v-btn text><router-link to="/about">About</router-link></v-btn>
+      <router-view/>
+    </v-main>
+
+  </v-app>
 </template>
 
 <style>
