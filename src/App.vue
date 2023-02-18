@@ -1,39 +1,71 @@
 <template>
-  <v-app>
-    <v-app-bar color="primary">
-      <v-app-bar-title>
-        Vuetify Sample Pages
-      </v-app-bar-title>
-    </v-app-bar>
-    
-    <v-main>
-      <v-btn text><router-link to="/">Home</router-link></v-btn>
-      <v-btn text><router-link to="/about">About</router-link></v-btn>
-      <router-view/>
-    </v-main>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      temporary
+      class="bg-deep-purple"
+      theme="dark"
+      >
+      <!--  -->
+      <v-list color="transparent">
+        <v-list-item
+          prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
+          title="John Leider"
+        ></v-list-item>
+      </v-list>
 
+        <v-divider></v-divider>
+      <v-list
+        :lines="false"
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+
+        <template v-slot:prepend>
+          <v-icon :icon="item.icon"></v-icon>
+        </template>
+
+        <v-list-item-title v-text="item.title"></v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+      <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block>
+              Logout
+            </v-btn>
+          </div>
+        </template>
+    </v-navigation-drawer>
+
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
+
+    </v-main>
   </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  export default {
+    data: () => ({
+       drawer: null,
+       items: [
+        { title: 'Dashboard', icon: 'mdi-view-dashboard'},
+        { title: 'Account', icon: 'mdi-account-box'},
+        { title: 'Todo', icon: 'mdi-gavel'},
 
-nav {
-  padding: 30px;
-}
+      ],
+    }),
+  }
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
